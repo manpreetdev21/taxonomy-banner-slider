@@ -2,6 +2,10 @@
 
 namespace TaxonomyBannerSlider;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Autoloader for plugin classes
  */
