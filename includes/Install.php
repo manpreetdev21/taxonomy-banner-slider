@@ -24,12 +24,7 @@ class Install {
      * Minimum WordPress version required
      */
     const MIN_WP_VERSION = '5.6';
-
-    /**
-     * Plugin DB version for updates
-     */
-    const DB_VERSION = '1.0';
-
+    
     /**
      * Run installation process
      */
