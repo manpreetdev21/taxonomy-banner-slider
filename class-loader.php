@@ -88,7 +88,7 @@ class DwtbsPlugin {
      */
     private function init_hooks() {
         register_activation_hook(__FILE__, array('TaxonomyBannerSlider\\Install', 'activate'));
-        register_deactivation_hook(__FILE__, array('TaxonomyBannerSlider\\Install', 'deactivate'));
+        register_deactivation_hook(__FILE__, array('TaxonomyBannerSlider\\Uninstall', 'deactivate'));
         
         add_action('plugins_loaded', array($this, 'load_textdomain'));
     }
