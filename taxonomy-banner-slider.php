@@ -1,7 +1,7 @@
 <?php 
 /**
 * Plugin Name: Dynamic Woo Taxonomy Banner Slider
-* Description: WordPress Dynamic Woo Taxonomy Banner Slider for WooCommerce, easy to use with help of shortcodes.
+* Description: WordPress Dynamic WooCommerce Taxonomy Banner Slider for WooCommerce, easy to use with help of shortcodes.
 * Plugin URI: https://github.com/lucifermani21/taxonomy-banner-slider.git
 * Version: 1.0.0
 * Author: Manpreet Singh
@@ -16,7 +16,7 @@ $loader = plugin_dir_path(__FILE__) . 'class-loader.php';
 if (file_exists($loader) ) {
     require_once $loader;
 } else {
-    wp_die(__('Plugin loader file is missing.', MS_SBS_TEXT_DOMAIN));
+    wp_die(__('Plugin loader file is missing.', 'taxonomy-banner-slider'));
 }
 
 // Initialize the plugin
