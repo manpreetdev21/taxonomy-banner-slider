@@ -7,11 +7,11 @@
 * Author: Manpreet Singh
 **/
 
+namespace TaxonomyBannerSlider;
+
 if (!defined('ABSPATH')) {
     exit;
 }
-
-namespace TaxonomyBannerSlider;
 
 /**
  * Autoloader for plugin classes
@@ -22,6 +22,7 @@ spl_autoload_register(function ($class) {
     
     // Does the class use the namespace prefix?
     $len = strlen($prefix);
+	
     if (strncmp($prefix, $class, $len) !== 0) {
         return;
     }
@@ -58,7 +59,6 @@ class DwtbsPlugin {
      */
     private $admin;
     private $frontend;
-    private $ajax;
     private $shortcode;
     
     /**
@@ -106,7 +106,6 @@ class DwtbsPlugin {
     private function init_components() {
         $this->admin = new Admin\Manager();
         $this->frontend = new Frontend\Manager();
-        $this->ajax = new Ajax\Handler();
         $this->shortcode = new Shortcodes\BannerSlider();
     }
     
@@ -123,4 +122,4 @@ class DwtbsPlugin {
 }
 
 // Initialize the plugin
-TaxonomyBannerSlider\DwtbsPlugin::get_instance();
+DwtbsPlugin::get_instance();
