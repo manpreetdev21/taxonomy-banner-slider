@@ -18,6 +18,7 @@ class Settings{
 
     public function __construct() {
         add_action('admin_enqueue_scripts', [$this, 'wp_dwtbs_script_style_admin']);
+        add_action( 'woocommerce_before_main_content', array( $this, 'wp_dwtbs_woo_before_main_content' ), 10, 0 );
     }
 
     public function wp_dwtbs_script_style_admin(): void {
@@ -61,4 +62,9 @@ class Settings{
         }
     }
 
+    public function wp_dwtbs_woo_before_main_content(): void {
+        if( !is_shop() && is_product_category() && !is_product() ) {
+            echo do_shortcode('[taxonomy_banner_slider]');
+        }        
+    }
 }

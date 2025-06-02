@@ -1,4 +1,4 @@
-<?php $term_page_id = $this->term_id; $dynamic_slider = $this->meta_data;?>
+<?php $term_page_id = $this->term_page_id; $dynamic_slider = $this->meta_data;?>
 <?php if( !empty( $dynamic_slider ) ):?>
 <div id="carouselExample<?php echo $term_page_id;?>" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
