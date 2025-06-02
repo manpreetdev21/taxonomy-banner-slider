@@ -1,7 +1,6 @@
 .banner-slider-container {
     margin-bottom: 15px;
 }
-
 .banner-slider-item {
     display: flex;
     align-items: center;
@@ -11,11 +10,18 @@
     border: 1px solid #ddd;
     position: relative;
 }
-
 .remove_banner_button {
     margin-left: 10px;
 }
-
+button.button.button_remove_banner_button {
+    margin-left: 10px;
+}
 .clear {
     clear: both;
+}
+.button_add_new_banner_button .dashicons, 
+.button_add_new_banner_button .dashicons-before:before,
+.button_remove_banner_button .dashicons, 
+.button_remove_banner_button .dashicons-before:before {
+    vertical-align: middle;
 }

@@ -24,6 +24,12 @@ class Settings{
         if (!defined('MS_DWTBS_URL') || !defined('MS_DWTBS_PATH')) {
             return;
         }
+        
+        // Check if we're on the product category screen
+        $screen = get_current_screen();
+        if (!$screen || 'product_cat' !== $screen->taxonomy) {
+            return;
+        }
 
         $this->enqueue_assets($this->admin_style, $this->admin_script);
 

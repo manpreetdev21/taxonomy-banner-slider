@@ -21,12 +21,12 @@ class Metabox{
     
     public function __construct() {
         $this->taxonomy = 'product_cat';
-        add_action( $this->taxonomy.'_add_form_fields', array( $this, 'wp_dwtbs_render_product_cat_add_meta_box' ), 20, 1);
+        //add_action( $this->taxonomy.'_add_form_fields', array( $this, 'wp_dwtbs_render_product_cat_add_meta_box' ), 20, 1);
         add_action( $this->taxonomy.'_edit_form_fields', array( $this, 'wp_dwtbs_render_product_cat_edit_meta_box' ), 20, 1);
         add_action('created_'.$this->taxonomy, array( $this, 'wp_dwtbs_save_product_cat_banner' ), 20, 1);
         add_action('edited_'.$this->taxonomy, array( $this, 'wp_dwtbs_save_product_cat_banner' ), 20, 1);
     }
-
+    /*
     public function wp_dwtbs_render_product_cat_add_meta_box( $term ) {
         ?>
         <div class="form-field term-banner-thumbnail-wrap">
@@ -47,17 +47,17 @@ class Metabox{
             <button type="button" class="button add_new_banner_button"><span class="dashicons dashicons-plus"></span><?php esc_html_e('Add New Banner', 'taxonomy-banner-slider'); ?></button>
         </div>
         <?php
-    }
+    }*/
 
-    public function wp_dwtbs_render_product_cat_edit_meta_box( $term ) {
+    public function wp_dwtbs_render_product_cat_edit_meta_box($term) {
         $term_id = $term->term_id;
         $banner_sliders = get_term_meta($term_id, 'dwtbs_banner_slider', false);
         $banner_sliders = !empty($banner_sliders) ? $banner_sliders : array('');
         ?>
         <tr class="form-field term-banner-thumbnail-wrap">
-            <th scope="row" valign="top"><label for="dwtbs_banner_slider"><?php esc_html_e( 'Banner Images', 'taxonomy-banner-slider' ); ?></label></th>
+            <th scope="row" valign="top"><label><?php esc_html_e('Banner Images', 'taxonomy-banner-slider'); ?></label></th>
             <td>
-                <div class="banner-slider-container">
+                <div class="banner-slider-container" id="dwtbs-banner-container">
                     <?php foreach ($banner_sliders as $index => $banner_slider): ?>
                         <div class="banner-slider-item">
                             <div class="product_cat_thumbnail" style="float: left; margin-right: 10px;">
@@ -65,21 +65,20 @@ class Metabox{
                             </div>
                             <div>
                                 <input type="hidden" class="image_attachment_id" name="dwtbs_banner_slider[]" value="<?php echo esc_attr($banner_slider); ?>">
-                                <button type="button" class="button upload_image_button"><?php esc_html_e('Upload/Add image', 'taxonomy-banner-slider'); ?></button>
-                                <button type="button" class="button remove_image_button" <?php echo empty($banner_slider) ? 'style="display: none;"' : ''; ?>><?php esc_html_e('Remove image', 'taxonomy-banner-slider'); ?></button>
+                                <button type="button" class="button button_upload_image_button"><?php esc_html_e('Upload/Add image', 'taxonomy-banner-slider'); ?></button>
+                                <button type="button" class="button button_remove_image_button" <?php echo empty($banner_slider) ? 'style="display: none;"' : ''; ?>><?php esc_html_e('Remove image', 'taxonomy-banner-slider'); ?></button>
                                 <?php if ($index > 0): ?>
-                                    <button type="button" class="button remove_banner_button"><span class="dashicons dashicons-trash"></span></button>
+                                    <button type="button" class="button button_remove_banner_button"><span class="dashicons dashicons-trash"></span></button>
                                 <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                </div>		
-                <div class="clear" style="margin-top:10px;"></div>
-                <button type="button" class="button add_new_banner_button"><span class="dashicons dashicons-plus"></span><?php esc_html_e('Add New Banner', 'taxonomy-banner-slider'); ?></button>
+                </div>
+                <button type="button" class="button button_add_new_banner_button" id="dwtbs-add-banner"><span class="dashicons dashicons-plus"></span><?php esc_html_e('Add New Banner', 'taxonomy-banner-slider'); ?></button>
             </td>
         </tr>
         <?php
-    }   
+    } 
 
     public function wp_dwtbs_save_product_cat_banner($term_id) {
         if (isset($_POST['dwtbs_banner_slider'])) {
