@@ -32,9 +32,6 @@ class Install {
         // Check requirements before installation
         self::check_requirements();
 
-        // Schedule any needed cron jobs
-        self::schedule_crons();
-
         // Set the installed version
         update_option('tbs_version', DwtbsPlugin::VERSION);
     }
@@ -63,15 +60,6 @@ class Install {
                 self::MIN_WP_VERSION,
                 $wp_version
             ));
-        }
-    }
-
-    /**
-     * Schedule cron jobs
-     */
-    private static function schedule_crons() {
-        if (!wp_next_scheduled('tbs_daily_maintenance')) {
-            wp_schedule_event(time(), 'daily', 'tbs_daily_maintenance');
         }
     }
 }

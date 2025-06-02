@@ -21,13 +21,14 @@ class Metabox{
     
     public function __construct() {
         $this->taxonomy = 'product_cat';
-        add_action( $this->taxonomy.'_add_form_fields', array( $this, 'wp_dwtbs_render_product_cat_add_meta_box' ), 10, 1);
-        add_action( $this->taxonomy.'_edit_form_fields', array( $this, 'wp_dwtbs_render_product_cat_edit_meta_box' ), 10, 1);
-        add_action('created_'.$this->taxonomy, array( $this, 'wp_dwtbs_save_product_cat_banner' ), 10, 1);
-        add_action('edited_'.$this->taxonomy, array( $this, 'wp_dwtbs_save_product_cat_banner' ), 10, 1);
+        add_action( $this->taxonomy.'_add_form_fields', array( $this, 'wp_dwtbs_render_product_cat_add_meta_box' ), 20, 1);
+        add_action( $this->taxonomy.'_edit_form_fields', array( $this, 'wp_dwtbs_render_product_cat_edit_meta_box' ), 20, 1);
+        add_action('created_'.$this->taxonomy, array( $this, 'wp_dwtbs_save_product_cat_banner' ), 20, 1);
+        add_action('edited_'.$this->taxonomy, array( $this, 'wp_dwtbs_save_product_cat_banner' ), 20, 1);
     }
 
     public function wp_dwtbs_render_product_cat_add_meta_box( $term ) {
+        //var_dump( $term->term_id );
         $term_id = $term->term_id;
         $banner_slider = get_term_meta( $term_id, 'dwtbs_banner_slider', true );
         ?>
