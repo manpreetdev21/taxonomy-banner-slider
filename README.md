@@ -1,0 +1,6 @@
+Dynamic Featured Banner Slider
+WordPress Dynamic Featured Banner Slider for wordpress, easy to use with help of shortcodes.
+
+You can use [taxonomy_banner_slider] shortcode for the banner slider.
+The Banner Slider template can be overridden by copying it to yourtheme/woocommerce/banner_slider/dwtbs-layout-{add layout number}.php Examples: dwtbs-layout-1.php, dwtbs-layout-2.php
+You can pass layout number to the short as [taxonomy_banner_slider layout="1"] shortcode for the banner slider.
