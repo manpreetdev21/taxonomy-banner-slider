@@ -36,7 +36,7 @@ class Metabox{
                     <div class="product_cat_thumbnail" style="float: left; margin-right: 10px;">
                         <img src="<?php echo esc_url(wc_placeholder_img_src()); ?>" width="60px" height="60px">
                     </div>
-                    <div style="line-height: 60px;">
+                    <div>
                         <input type="hidden" class="image_attachment_id" name="dwtbs_banner_slider[]">
                         <button type="button" class="button upload_image_button"><?php esc_html_e('Upload/Add image', 'taxonomy-banner-slider'); ?></button>
                         <button type="button" class="button remove_image_button" style="display: none;"><?php esc_html_e('Remove image', 'taxonomy-banner-slider'); ?></button>
@@ -63,7 +63,7 @@ class Metabox{
                             <div class="product_cat_thumbnail" style="float: left; margin-right: 10px;">
                                 <img src="<?php echo $banner_slider ? wp_get_attachment_image_url($banner_slider, 'thumbnail') : esc_url(wc_placeholder_img_src()); ?>" width="60px" height="60px">
                             </div>
-                            <div style="line-height: 60px;">
+                            <div>
                                 <input type="hidden" class="image_attachment_id" name="dwtbs_banner_slider[]" value="<?php echo esc_attr($banner_slider); ?>">
                                 <button type="button" class="button upload_image_button"><?php esc_html_e('Upload/Add image', 'taxonomy-banner-slider'); ?></button>
                                 <button type="button" class="button remove_image_button" <?php echo empty($banner_slider) ? 'style="display: none;"' : ''; ?>><?php esc_html_e('Remove image', 'taxonomy-banner-slider'); ?></button>
