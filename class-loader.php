@@ -51,7 +51,6 @@ class DwtbsPlugin {
      * Core classes
      */
     private $admin;
-    private $frontend;
     private $shortcode;
     
     /**
@@ -98,7 +97,6 @@ class DwtbsPlugin {
      */
     private function init_components() {
         $this->admin = new Admin\Manager();
-        $this->frontend = new Frontend\Manager();
         $this->shortcode = new Shortcodes\BannerSlider();
     }
     
