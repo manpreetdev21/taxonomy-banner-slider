@@ -1,0 +1,21 @@
+.banner-slider-container {
+    margin-bottom: 15px;
+}
+
+.banner-slider-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+.remove_banner_button {
+    margin-left: 10px;
+}
+
+.clear {
+    clear: both;
+}

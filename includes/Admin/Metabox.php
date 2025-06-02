@@ -44,7 +44,7 @@ class Metabox{
                 </div>
             </div>
             <div class="clear" style="margin-top:10px;"></div>
-            <button type="button" class="button new_image_button"><span class="dashicons dashicons-insert"></span><?php esc_html_e( 'Add New', 'taxonomy-banner-slider' ); ?></button>
+            <button type="button" class="button add_new_banner_button"><span class="dashicons dashicons-plus"></span><?php esc_html_e('Add New Banner', 'taxonomy-banner-slider'); ?></button>
         </div>
         <?php
     }
@@ -75,7 +75,7 @@ class Metabox{
                     <?php endforeach; ?>
                 </div>		
                 <div class="clear" style="margin-top:10px;"></div>
-                <button type="button" class="button new_image_button"><span class="dashicons dashicons-insert"></span><?php esc_html_e( 'Add New', 'taxonomy-banner-slider' ); ?></button>
+                <button type="button" class="button add_new_banner_button"><span class="dashicons dashicons-plus"></span><?php esc_html_e('Add New Banner', 'taxonomy-banner-slider'); ?></button>
             </td>
         </tr>
         <?php

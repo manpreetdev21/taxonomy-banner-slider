@@ -1,77 +1,64 @@
 jQuery(document).ready(function($) {
-    // Add new field group
-    $('#add-new-field-group').click(function() {
-        var $lastGroup = $('.repeatable-field-group').last();
-        var newIndex = $lastGroup.data('index') + 1;
-        var $newGroup = $lastGroup.clone();
+
+    // Define placeholder image URL
+    var wc_placeholder_img_src = taxonomy_banner_slider_vars.placeholder_url;
+
+    // Add new banner item
+    $('.add_new_banner_button').on('click', function() {
+        var $container = $(this).siblings('.banner-slider-container');
+        var $clone = $container.find('.banner-slider-item').first().clone();
         
-        // Update the new group
-        $newGroup.attr('data-index', newIndex);
-        $newGroup.find('h3').text('Item ' + (newIndex + 1));
-        $newGroup.find('input, textarea').val('');
-        $newGroup.find('.image-preview').html('');
-        $newGroup.find('.image-id').val('');
+        // Clear values in the clone
+        $clone.find('.image_attachment_id').val('');
+        $clone.find('img').attr('src', wc_placeholder_img_src);
+        $clone.find('.remove_image_button').hide();
+        $clone.find('.remove_banner_button').remove();
         
-        // Update name attributes
-        $newGroup.find('[name]').each(function() {
-            var name = $(this).attr('name');
-            name = name.replace(/\[\d+\]/, '[' + newIndex + ']');
-            $(this).attr('name', name);
-        });
+        // Add remove button for the new item
+        $clone.append('<button type="button" class="button remove_banner_button"><span class="dashicons dashicons-trash"></span></button>');
         
-        $newGroup.insertAfter($lastGroup);
+        $container.append($clone);
     });
     
-    // Remove field group
-    $(document).on('click', '.remove-field-group', function() {
-        if ($('.repeatable-field-group').length > 1) {
-            $(this).closest('.repeatable-field-group').remove();
-            // Reindex remaining groups
-            $('.repeatable-field-group').each(function(index) {
-                $(this).attr('data-index', index);
-                $(this).find('h3').text('Item ' + (index + 1));
-                $(this).find('[name]').each(function() {
-                    var name = $(this).attr('name');
-                    name = name.replace(/\[\d+\]/, '[' + index + ']');
-                    $(this).attr('name', name);
-                });
-            });
-        } else {
-            alert('You need at least one item.');
-        }
+    // Remove banner item
+    $(document).on('click', '.remove_banner_button', function() {
+        $(this).closest('.banner-slider-item').remove();
     });
     
     // Image upload
-    $(document).on('click', '.upload-image-button', function() {
-        var file_frame;  
+    $(document).on('click', '.upload_image_button', function(e) {
+        e.preventDefault();
         var $button = $(this);
-        var $imageId = $button.siblings('.image-id');
-        var $imagePreview = $button.siblings('.image-preview');
+        var $input = $button.siblings('.image_attachment_id');
+        var $img = $button.closest('.banner-slider-item').find('img');
         
-        if (file_frame) {
-            file_frame.open();
-            return;
-        } 
-
-        file_frame = wp.media.frames.file_frame = wp.media({
-            title: 'Select an Image',
+        var frame = wp.media({
+            title: 'Select or Upload Banner Image',
             button: {
-                text: 'Use this image',
+                text: 'Use this image'
             },
-            multiple: false // Set to true to allow multiple files to be selected
-        }); 
-        
-        file_frame.on('select', function() {
-            var attachment = file_frame.state().get('selection').first().toJSON();
-            $imageId.val(attachment.id);
-            $imagePreview.html('<img src="' + attachment.url + '" style="max-width:120px; height: auto;">');
+            multiple: false
         });
-        file_frame.open();
+        
+        frame.on('select', function() {
+            var attachment = frame.state().get('selection').first().toJSON();
+            $input.val(attachment.id);
+            $img.attr('src', attachment.sizes.thumbnail.url);
+            $button.siblings('.remove_image_button').show();
+        });
+        
+        frame.open();
     });
     
-    // Remove image
-    $(document).on('click', '.remove-image-button', function() {
-        $(this).siblings('.image-id').val('');
-        $(this).siblings('.image-preview').html('');
+    // Image remove
+    $(document).on('click', '.remove_image_button', function(e) {
+        e.preventDefault();
+        var $button = $(this);
+        var $input = $button.siblings('.image_attachment_id');
+        var $img = $button.closest('.banner-slider-item').find('img');
+        
+        $input.val('');
+        $img.attr('src', wc_placeholder_img_src);
+        $button.hide();
     });
 });
